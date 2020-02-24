@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 function install_prezto () {
     git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
@@ -19,7 +19,7 @@ function install_homebrew () {
 
 function install_anyenv () {
     git clone https://github.com/anyenv/anyenv ~/.anyenv
-    $HOME/.anyenv/bin/anyenv init
+    $HOME/.anyenv/bin/anyenv install --init
 }
 
 function install_anyenv_mac () {
@@ -27,12 +27,20 @@ function install_anyenv_mac () {
     anyenv init
 }
 
+function install_vim() {
+    ln -fs $HOME/dotfiles/vim/vimrc $HOME/.vimrc
+    vim +PlugInstall +qall
+    python3 $HOME/.vim/plugged/YouCompleteMe/install.py --all
+}
+
 if [ "$(uname)" == 'Darwin' ]; then
     install_homebrew
     install_prezto
     install_anyenv_mac
+    install_vim
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     install_prezto
     install_anyenv
+    install_vim
 fi
 
