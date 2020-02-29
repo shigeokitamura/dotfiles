@@ -69,8 +69,8 @@ let ayucolor="dark"   " for dark version of theme
 colorscheme ayu
 
 "" youcompleteme
-let g:ycm_server_python_interpreter = '/usr/bin/python2.7'
-let g:ycm_python_binary_path = '/usr/bin/python2.7'
+let g:ycm_server_python_interpreter = '/usr/bin/env python'
+let g:ycm_python_binary_path = '/usr/bin/env python'
 let g:ycm_auto_trigger = 1
 let g:ycm_min_num_of_chars_for_completion = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
