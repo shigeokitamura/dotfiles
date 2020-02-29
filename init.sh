@@ -13,13 +13,38 @@ function install_prezto () {
     chsh -s /bin/zsh
 }
 
+function install_packages () {
+    sudo apt update && sudo apt upgrade
+    sudo apt install zsh
+    sudo apt install zlib1g-dev libssl-dev libbz2-dev libreadline-dev libsqlite3-dev
+    sudo apt install yarn cmake golang-go
+}
+
 function install_homebrew () {
     /usr/bin/ruby -e '$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install\)'
 }
 
 function install_anyenv () {
     git clone https://github.com/anyenv/anyenv ~/.anyenv
-    $HOME/.anyenv/bin/anyenv install --init
+    export PATH="$HOME/.anyenv/bin:$PATH"
+    anyenv install --init
+
+    anyenv install rbenv
+    export PATH="$HOME/.anyenv/envs/rbenv/bin:$PATH"
+    rbenv install 2.7.0
+    rbenv global 2.7.0
+
+    anyenv install pyenv
+    export PATH="$HOME/.anyenv/envs/pyenv/bin:$PATH"
+    export PYTHON_CONFIGURE_OPTS="--enable-shared"
+    pyenv install 3.7.6
+    pyenv global 3.7.6
+
+    anyenv install nodenv
+    export PATH="$HOME/.anyenv/envs/nodenv/bin:$PATH"
+    echo yarn > "$HOME/.anyenv/envs/nodenv/default-packages"
+    nodenv install 13.9.0
+    nodenv global 13.9.0
 }
 
 function install_anyenv_mac () {
@@ -30,7 +55,7 @@ function install_anyenv_mac () {
 function install_vim() {
     ln -fs $HOME/dotfiles/vim/vimrc $HOME/.vimrc
     vim +PlugInstall +qall
-    python3 $HOME/.vim/plugged/YouCompleteMe/install.py --all
+    python $HOME/.vim/plugged/YouCompleteMe/install.py
 }
 
 if [ "$(uname)" == 'Darwin' ]; then
@@ -39,8 +64,9 @@ if [ "$(uname)" == 'Darwin' ]; then
     install_anyenv_mac
     install_vim
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
+    install_packages
     install_prezto
-    # install_anyenv
-    # install_vim
+    install_anyenv
+    install_vim
 fi
 
