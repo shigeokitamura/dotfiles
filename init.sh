@@ -40,7 +40,7 @@ if [ "$(uname)" == 'Darwin' ]; then
     install_vim
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     install_prezto
-    install_anyenv
-    install_vim
+    # install_anyenv
+    # install_vim
 fi
 
