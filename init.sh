@@ -31,20 +31,20 @@ function install_anyenv () {
 
     anyenv install rbenv
     export PATH="$HOME/.anyenv/envs/rbenv/bin:$PATH"
-    rbenv install 2.7.0
-    rbenv global 2.7.0
+    rbenv install 3.0.0
+    rbenv global 3.0.0
 
     anyenv install pyenv
     export PATH="$HOME/.anyenv/envs/pyenv/bin:$PATH"
     export PYTHON_CONFIGURE_OPTS="--enable-shared"
-    pyenv install 3.7.6
-    pyenv global 3.7.6
+    pyenv install 3.9.1
+    pyenv global 3.9.1
 
     anyenv install nodenv
     export PATH="$HOME/.anyenv/envs/nodenv/bin:$PATH"
     echo yarn > "$HOME/.anyenv/envs/nodenv/default-packages"
-    nodenv install 13.9.0
-    nodenv global 13.9.0
+    nodenv install 14.15.3
+    nodenv global 14.15.3
 }
 
 function install_anyenv_mac () {
@@ -69,4 +69,3 @@ elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     install_anyenv
     install_vim
 fi
-
