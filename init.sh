@@ -6,7 +6,7 @@ function install_prezto () {
     ln -fs $HOME/dotfiles/terminal/zlogin    $HOME/.zlogin
     ln -fs $HOME/dotfiles/terminal/zlogout   $HOME/.zlogout
     ln -fs $HOME/dotfiles/terminal/zpreztorc $HOME/.zpreztorc
-    ln -fs $HOME/dotfiles/termianl/zprofile  $HOME/.zprofile
+    ln -fs $HOME/dotfiles/terminal/zprofile  $HOME/.zprofile
     ln -fs $HOME/dotfiles/terminal/zshenv    $HOME/.zshenv
     ln -fs $HOME/dotfiles/terminal/zshrc     $HOME/.zshrc
 
@@ -60,12 +60,12 @@ function install_vim() {
 
 if [ "$(uname)" == 'Darwin' ]; then
     install_homebrew
-    install_prezto
     install_anyenv_mac
+    install_prezto
     install_vim
 elif [ "$(expr substr $(uname -s) 1 5)" == 'Linux' ]; then
     install_packages
-    install_prezto
     install_anyenv
+    install_prezto
     install_vim
 fi
